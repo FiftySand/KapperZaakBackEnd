@@ -20,4 +20,28 @@ public class AccountCollection implements IAccountCollection {
     public void createAccount(Account account) {
         _accountRepository.save(account);
     }
+
+    @Override
+    public List<Account> getAllAccounts() {
+        return _accountRepository.findAll();
+    }
+
+    @Override
+    public Optional<Account> getAccount(int id) {
+        return _accountRepository.findById(id);
+    }
+
+    @Override
+    public void deleteAccount(int id) {
+        _accountRepository.deleteById(id);
+    }
+
+    @Override
+    public Account login(String username, String password) {
+        List<Account> accounts = _accountRepository.findAll();
+
+        Account account = accounts.stream().findAny().filter(a -> a.getUsername().equals(username) && a.getPassword().equals(password)).get();
+
+        return account;
+    }
 }
