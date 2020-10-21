@@ -10,6 +10,7 @@ import logic.interfaces.IKapper;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Service
@@ -20,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class Kapper implements IKapper{
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
     @NotNull
