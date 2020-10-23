@@ -39,4 +39,22 @@ public class Kapper implements IKapper{
     private void set_kapperRepository(IKapperRepository kapperRepository) {
         _kapperRepository = kapperRepository;
     }
+
+    public Kapper(Kapper kapper)
+    {
+        this.Id = kapper.getId();
+        this.Username = kapper.getUsername();
+        this.Password = kapper.getPassword();
+    }
+
+    public Kapper(Kapper kapper, int id)
+    {
+        this.Id = id;
+        this.Username = kapper.getUsername();
+        this.Password = kapper.getPassword();
+    }
+
+    public void update() {
+        _kapperRepository.save(this);
+    }
 }
