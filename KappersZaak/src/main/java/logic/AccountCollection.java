@@ -40,7 +40,7 @@ public class AccountCollection implements IAccountCollection {
     public Account login(String username, String password) {
         List<Account> accounts = _accountRepository.findAll();
 
-        Account account = accounts.stream().findAny().filter(a -> a.getUsername().equals(username) && a.getPassword().equals(password)).get();
+        Account account = accounts.stream().findAny().filter(a -> a.getName().equals(username) && a.getPassword().equals(password)).get();
 
         return account;
     }

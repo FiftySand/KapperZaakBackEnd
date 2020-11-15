@@ -28,9 +28,9 @@ public class Kapper implements IKapper{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
     @NotNull
-    private String Username;
+    private String Name;
     @NotNull
-    private String Password;
+    private Integer Age;
 
     @Transient
     private static IKapperRepository _kapperRepository;
@@ -43,15 +43,15 @@ public class Kapper implements IKapper{
     public Kapper(Kapper kapper)
     {
         this.Id = kapper.getId();
-        this.Username = kapper.getUsername();
-        this.Password = kapper.getPassword();
+        this.Name = kapper.getName();
+        this.Age = kapper.getAge();
     }
 
     public Kapper(Kapper kapper, int id)
     {
         this.Id = id;
-        this.Username = kapper.getUsername();
-        this.Password = kapper.getPassword();
+        this.Name = kapper.getName();
+        this.Age = kapper.getAge();
     }
 
     public void update() {

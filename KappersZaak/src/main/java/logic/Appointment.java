@@ -1,3 +1,5 @@
+/*
+
 package logic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -7,9 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
-import repository.IAccountRepository;
+import logic.Kapper;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,45 +23,42 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 
 
-public class Account implements IAppointment {
+public class Appointment implements IAppointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "appointment_kapper")
+    private Kapper kapper;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "appointment_account")
+    private Kapper kapper;
+
+
     @NotNull
-    private String Name;
-    @NotNull
+    @JsonIgnore
     private String Password;
 
-    private String Email;
-
-    private Boolean ReceiveEmail;
-
     @Transient
-    private static IAccountRepository _accountRepository;
+    private static IAppointmentRepository _appointmentRepository;
 
     @Autowired
-    private void setAccountRepository(IAccountRepository accountRepository) {
+    private void SetAppointmentRepository(IAppointmentRepository appointmentRepository) {
         _accountRepository = accountRepository;
     }
 
-    public Account(Account account) {
+    public Appointment(Account account) {
         Id = account.Id;
-        Name = account.Name;
+        Username = account.Username;
         Password = account.Password;
-    }
-
-    public Account(String name, String password, String email, Boolean receiveEmail)
-    {
-        this.Name = name;
-        this.Password = password;
-        this.Email = email;
-        this.ReceiveEmail = receiveEmail;
     }
 
     public Account(Account account, int id) {
         Id = id;
-        Name = account.Name;
+        Username = account.Username;
         Password = account.Password;
     }
     public void update() {
@@ -68,3 +66,4 @@ public class Account implements IAppointment {
     }
 
 }
+*/
