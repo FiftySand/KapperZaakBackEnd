@@ -1,4 +1,4 @@
-/*
+
 
 package logic;
 
@@ -8,9 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyToOne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import logic.Kapper;
+import repository.IAppointmentRepository;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -29,41 +31,41 @@ public class Appointment implements IAppointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "appointment_kapper")
-    private Kapper kapper;
+    @ManyToOne()
+    @JoinColumn(name = "FK_account", insertable = false, updatable = false)
+    private Account Account;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "appointment_account")
-    private Kapper kapper;
-
-
-    @NotNull
-    @JsonIgnore
-    private String Password;
+    @ManyToOne()
+    @JoinColumn(name = "FK_kapper", insertable = false, updatable = false)
+    private Kapper Kapper;
 
     @Transient
     private static IAppointmentRepository _appointmentRepository;
 
     @Autowired
     private void SetAppointmentRepository(IAppointmentRepository appointmentRepository) {
-        _accountRepository = accountRepository;
+        _appointmentRepository = appointmentRepository;
     }
 
-    public Appointment(Account account) {
-        Id = account.Id;
-        Username = account.Username;
-        Password = account.Password;
+    public Appointment(Kapper kapper, Account account) {
+        Kapper = kapper;
+        Account = account;
     }
-
-    public Account(Account account, int id) {
-        Id = id;
-        Username = account.Username;
-        Password = account.Password;
+    public Appointment(Appointment appointment)
+    {
+        this.Id = appointment.getId();
+        this.Kapper = appointment.getKapper();
+        this.Account = appointment.getAccount();
+    }
+    public Appointment(Appointment appointment, int id)
+    {
+        this.Id = appointment.getId();
+        this.Kapper = appointment.getKapper();
+        this.Account = appointment.getAccount();
     }
     public void update() {
-        _accountRepository.save(this);
+        _appointmentRepository.save(this);
     }
 
 }
-*/
+

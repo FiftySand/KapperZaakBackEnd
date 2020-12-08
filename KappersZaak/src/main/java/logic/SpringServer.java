@@ -7,12 +7,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import restapi.AccountController;
+import restapi.AppointmentController;
 import restapi.KapperController;
 
 
 @SpringBootApplication
 @EnableJpaRepositories("repository")
-@Import({AccountController.class, KapperController.class})
+@Import({AccountController.class, KapperController.class, AppointmentController.class})
 public class SpringServer extends SpringBootServletInitializer {
 
     @Override

@@ -1,7 +1,9 @@
 package logic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import logic.interfaces.IAccount;
 import logic.interfaces.IAppointment;
+import logic.interfaces.IKapper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,9 @@ import org.springframework.stereotype.Service;
 import repository.IAccountRepository;
 
 import javax.persistence.*;
+import javax.sound.midi.Receiver;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 @Service
 @Entity
@@ -22,14 +26,15 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 
 
-public class Account implements IAppointment {
+public class Account implements IAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+
     @NotNull
     private String Name;
-    @NotNull
+    @Nullable
     private String Password;
 
     private String Email;
@@ -48,6 +53,8 @@ public class Account implements IAppointment {
         Id = account.Id;
         Name = account.Name;
         Password = account.Password;
+        Email = account.Email;
+        ReceiveEmail = account.ReceiveEmail;
     }
 
     public Account(String name, String password, String email, Boolean receiveEmail)
