@@ -2,14 +2,14 @@ package LogicTests;
 
 import logic.Account;
 import logic.Kapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import testRepository.accountRepository;
 import testRepository.kapperRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 public class kapperTest {
 
     @Test

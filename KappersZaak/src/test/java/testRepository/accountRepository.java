@@ -21,13 +21,13 @@ public class accountRepository {
 
     public Account getAccount(int id)
     {
-//        for(Account acc : accounts)
-//        {
-//            if(acc.getId() == id)
-//            {
-//                return acc;
-//            }
-//        }
+        for(Account acc : accounts)
+        {
+           if(acc.getId() == id)
+           {
+               return acc;
+          }
+        }
         return new Account();
     }
 
