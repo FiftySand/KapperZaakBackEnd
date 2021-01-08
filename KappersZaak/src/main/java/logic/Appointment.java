@@ -2,20 +2,16 @@
 
 package logic;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import logic.interfaces.IAppointment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.LazyToOne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import logic.Kapper;
-import repository.IAppointmentRepository;
+import testRepository.IAppointmentRepository;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Service
 @Entity
@@ -50,6 +46,12 @@ public class Appointment implements IAppointment {
     public Appointment(Kapper kapper, Account account) {
         Kapper = kapper;
         Account = account;
+    }
+    public Appointment(Kapper kapper, Account account, int id)
+    {
+        Kapper = kapper;
+        Account = account;
+        Id = id;
     }
     public Appointment(Appointment appointment)
     {

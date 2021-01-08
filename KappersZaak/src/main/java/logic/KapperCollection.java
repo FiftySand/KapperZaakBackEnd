@@ -2,7 +2,7 @@ package logic;
 
 import logic.interfaces.IKapperCollection;
 import org.springframework.stereotype.Service;
-import repository.IKapperRepository;
+import testRepository.IKapperRepository;
 
 import java.util.List;
 import java.util.Optional;

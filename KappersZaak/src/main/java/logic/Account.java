@@ -1,9 +1,6 @@
 package logic;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import logic.interfaces.IAccount;
-import logic.interfaces.IAppointment;
-import logic.interfaces.IKapper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,12 +8,10 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
-import repository.IAccountRepository;
+import testRepository.IAccountRepository;
 
 import javax.persistence.*;
-import javax.sound.midi.Receiver;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 @Service
 @Entity
