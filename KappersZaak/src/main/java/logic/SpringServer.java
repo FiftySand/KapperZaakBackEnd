@@ -12,7 +12,7 @@ import restapi.KapperController;
 
 
 @SpringBootApplication
-@EnableJpaRepositories("repository")
+@EnableJpaRepositories("testRepository")
 @Import({AccountController.class, KapperController.class, AppointmentController.class})
 public class SpringServer extends SpringBootServletInitializer {
 

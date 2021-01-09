@@ -1,10 +1,8 @@
 package logic;
 
 import logic.interfaces.IAppointmentCollection;
-import logic.interfaces.IKapperCollection;
 import org.springframework.stereotype.Service;
-import repository.IAppointmentRepository;
-import repository.IKapperRepository;
+import testRepository.IAppointmentRepository;
 
 import java.util.List;
 import java.util.Optional;
