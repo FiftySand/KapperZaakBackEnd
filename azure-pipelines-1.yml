@@ -22,3 +22,9 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
     
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'KappersZaakRelease'
+    downloadPath: '$(System.ArtifactsDirectory)'
