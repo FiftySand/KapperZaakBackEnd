@@ -26,5 +26,5 @@ steps:
   inputs:
     buildType: 'current'
     downloadType: 'single'
-    artifactName: 'KappersZaak:war'
+    artifactName: 'KappersZaakWAR'
     downloadPath: '$(System.ArtifactsDirectory)'
