@@ -11,7 +11,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class kapperTest {
-    
+
+    //ci test 3.0
     @Test
     public void createKapper()
     {
