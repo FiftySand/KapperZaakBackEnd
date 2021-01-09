@@ -1,4 +1,5 @@
 # Maven
+
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
@@ -22,9 +23,8 @@ steps:
     goals: 'package'
     
 
-- task: DownloadBuildArtifacts@0
+- task: DownloadPipelineArtifact@2
   inputs:
     buildType: 'current'
-    downloadType: 'single'
     artifactName: 'KappersZaak'
-    downloadPath: '$(System.ArtifactsDirectory)'
+    targetPath: '$(Pipeline.Workspace)'
