@@ -87,6 +87,7 @@
             </exclusion>
         </exclusions>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
     <dependency>
         <groupId>org.apache.maven.plugins</groupId>
@@ -161,4 +162,25 @@
             </properties>
         </profile>
     </profiles>
+
+    <repositories>
+        <repository>
+            <id>KappersZaak</id>
+            <url>https://pkgs.dev.azure.com/338995/KappersZaak/_packaging/KappersZaak/maven/v1</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <distributionManagement>
+        <repository>
+            <id>KappersZaak</id>
+            <url>https://pkgs.dev.azure.com/338995/KappersZaak/_packaging/KappersZaak/maven/v1</url>
+        </repository>
+    </distributionManagement>
 </project>
