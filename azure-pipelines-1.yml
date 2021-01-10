@@ -21,10 +21,15 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-    
+  
 - task: DownloadBuildArtifacts@0
   inputs:
     buildType: 'current'
     downloadType: 'single'
-    artifactName: 'KappersZaakWAR'
+    artifactName: 'kappersZaakRelease'
     downloadPath: '$(System.ArtifactsDirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'kappersZaakRelease'
+    publishLocation: 'Container'
