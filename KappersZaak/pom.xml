@@ -162,4 +162,24 @@
             </properties>
         </profile>
     </profiles>
+
+    <repositories>
+        <repository>
+            <id>KappersZaak</id>
+            <url>https://pkgs.dev.azure.com/338995/KappersZaak/_packaging/KappersZaak/maven/v1</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>KappersZaak</id>
+            <url>https://pkgs.dev.azure.com/338995/KappersZaak/_packaging/KappersZaak/maven/v1</url>
+        </repository>
+    </distributionManagement>
 </project>
