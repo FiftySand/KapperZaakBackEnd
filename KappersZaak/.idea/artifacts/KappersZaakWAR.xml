@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="KappersZaakWAR">
+  <artifact type="war" build-on-make="true" name="KappersZaakWAR">
     <output-path>$PROJECT_DIR$/out/artifacts/KappersZaakWAR</output-path>
     <root id="archive" name="KappersZaakWAR.war" />
   </artifact>
