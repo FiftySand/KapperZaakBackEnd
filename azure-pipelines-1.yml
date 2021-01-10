@@ -34,9 +34,3 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'KappersZaakWAR'
     publishLocation: 'Container'
-
-- task: DownloadPipelineArtifact@2
-  inputs:
-    buildType: 'current'
-    artifactName: 'KappersZaakWAR'
-    targetPath: '$(Pipeline.Workspace)'
