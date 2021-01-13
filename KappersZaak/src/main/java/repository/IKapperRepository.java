@@ -1,4 +1,4 @@
-package testRepository;
+package repository;
 
 import logic.Kapper;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,9 +1,7 @@
 package LogicTests;
 
-import logic.Account;
 import logic.Kapper;
 import org.junit.jupiter.api.Test;
-import testRepository.accountRepository;
 import testRepository.kapperRepository;
 
 import java.util.ArrayList;

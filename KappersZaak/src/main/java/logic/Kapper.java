@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import logic.interfaces.IKapper;
-import testRepository.IKapperRepository;
+import repository.IKapperRepository;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

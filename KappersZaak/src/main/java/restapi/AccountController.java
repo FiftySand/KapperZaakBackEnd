@@ -1,14 +1,22 @@
 package restapi;
 
 import logic.Account;
+import logic.AccountCollection;
 import logic.interfaces.IAccountCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import restapi.resources.AccountResource;
+import restapi.security.JwtTokenProvider;
+import restapi.security.model.JwtResponse;
 
 import javax.persistence.NoResultException;
 import java.net.URI;
@@ -20,6 +28,11 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/account", produces = "application/hal+json")
 public class AccountController {
     private final IAccountCollection _accountCollection;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtTokenProvider jwtTokenProvider;
 
     public AccountController(IAccountCollection _accountCollection) {
         this._accountCollection = _accountCollection;
@@ -49,10 +62,10 @@ public class AccountController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?>  delete(@PathVariable("id") final int id) {
-        return _accountCollection.getAccount(id).map(p-> {
-            _accountCollection.deleteAccount(id);
-            return ResponseEntity.noContent().build();
-        }).orElseThrow(()-> new NoResultException());
+            return _accountCollection.getAccount(id).map(p -> {
+                _accountCollection.deleteAccount(id);
+                return ResponseEntity.noContent().build();
+            }).orElseThrow(() -> new NoResultException());
     }
 
     @PutMapping("/{id}")
@@ -64,6 +77,22 @@ public class AccountController {
         return ResponseEntity.created(uri).body(resource);
     }
 
+    @PostMapping(value = "/login")
+    public ResponseEntity<?> authorize(@RequestBody Account account) {
+        //if (_accountCollection.checkAccountPwd(account)) {
+            try {
+                //Authenticate user that wants to log in to application's frontend
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getName(), account.getPassword()));
 
+                //Create token if user can be authorized (if user exists)
+                JwtResponse response = new JwtResponse(jwtTokenProvider.createToken(account.getName()), _accountCollection.getAccountByName(account.getName()));
+
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } catch (AuthenticationException e) {
+                return new ResponseEntity<>("Could not authenticate", HttpStatus.BAD_REQUEST);
+            }
+        //}
+        //return new ResponseEntity<>("Invalid username/password supplied", HttpStatus.BAD_REQUEST);
+    }
 
 }

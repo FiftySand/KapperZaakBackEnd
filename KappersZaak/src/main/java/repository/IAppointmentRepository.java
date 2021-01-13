@@ -1,4 +1,4 @@
-package testRepository;
+package repository;
 
 import logic.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;

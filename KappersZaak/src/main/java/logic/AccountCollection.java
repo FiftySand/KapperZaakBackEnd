@@ -2,7 +2,7 @@ package logic;
 
 import logic.interfaces.IAccountCollection;
 import org.springframework.stereotype.Service;
-import testRepository.IAccountRepository;
+import repository.IAccountRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +27,8 @@ public class AccountCollection implements IAccountCollection {
     }
 
     @Override
-    public Optional<Account> getAccount(int id) {
-        return _accountRepository.findById(id);
+    public Account getAccount(int id) {
+        return _accountRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -44,4 +44,10 @@ public class AccountCollection implements IAccountCollection {
 
         return account;
     }
+
+    public Account getAccountByName(String username)
+    {
+       return _accountRepository.getAccountByName(username);
+    }
+
 }
