@@ -12,6 +12,7 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+ 
 
 steps:
 - task: Maven@3
@@ -25,13 +26,6 @@ steps:
     mavenAuthenticateFeed: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'deploy'
-
-steps:
-  - script: |
-      echo ${{ spring.profiles.active }} # outputs initialValue
-      echo $(one)
-    displayName: First variable pass
-
 
 - task: CopyFiles@2
   inputs:
