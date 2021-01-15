@@ -26,6 +26,13 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'deploy'
 
+steps:
+  - script: |
+      echo ${{ spring.profiles.active }} # outputs initialValue
+      echo $(one)
+    displayName: First variable pass
+
+
 - task: CopyFiles@2
   inputs:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
