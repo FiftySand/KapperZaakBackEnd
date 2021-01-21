@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import repository.IAppointmentRepository;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Service
 @Entity
@@ -27,16 +28,20 @@ public class Appointment implements IAppointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
+    @NotNull
     @ManyToOne()
     @JoinColumn(name = "FK_account")
     private Account Account;
 
+    @NotNull
     @ManyToOne()
     @JoinColumn(name = "FK_kapper")
     private Kapper Kapper;
 
+    @NotNull
     private String date;
 
+    @NotNull
     private String time;
 
     @Transient
