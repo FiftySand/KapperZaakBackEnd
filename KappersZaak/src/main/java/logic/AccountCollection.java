@@ -2,7 +2,7 @@ package logic;
 
 import logic.interfaces.IAccountCollection;
 import org.springframework.stereotype.Service;
-import testRepository.IAccountRepository;
+import repository.IAccountRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public class AccountCollection implements IAccountCollection {
 
-    private static IAccountRepository _accountRepository;
+    IAccountRepository _accountRepository;
 
     public AccountCollection(IAccountRepository repository) {
         _accountRepository = repository;
@@ -20,7 +20,6 @@ public class AccountCollection implements IAccountCollection {
     public void createAccount(Account account) {
         _accountRepository.save(account);
     }
-
     @Override
     public List<Account> getAllAccounts() {
         return _accountRepository.findAll();
@@ -38,10 +37,36 @@ public class AccountCollection implements IAccountCollection {
 
     @Override
     public Account login(String username, String password) {
-        List<Account> accounts = _accountRepository.findAll();
+        return null;
+    }
 
-        Account account = accounts.stream().findAny().filter(a -> a.getName().equals(username) && a.getPassword().equals(password)).get();
+    public boolean verify(Account account) {
+        Account loginAttempt = _accountRepository.findById(account.getId()).get();
+        if (account.getPassword().equals(loginAttempt.getPassword())) {
+            return true;
+        }
+        return false;
+    }
 
-        return account;
+    public Account getAccountByName(String name){
+        return _accountRepository.getAccountByName(name);
+    }
+
+    public Account getAccountByEmail(String email){
+        return _accountRepository.getAccountByEmail(email);
+    }
+
+
+
+
+    public void update(Account account)
+    {
+        Account acc = _accountRepository.findById(account.getId()).get();
+        acc.setEmail(account.getEmail());
+        acc.setReceiveEmail(account.getReceiveEmail());
+        acc.setPassword(account.getPassword());
+        acc.setName(account.getName());
+        _accountRepository.save(acc);
+
     }
 }

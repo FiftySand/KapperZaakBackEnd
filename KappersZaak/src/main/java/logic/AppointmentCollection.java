@@ -2,7 +2,7 @@ package logic;
 
 import logic.interfaces.IAppointmentCollection;
 import org.springframework.stereotype.Service;
-import testRepository.IAppointmentRepository;
+import repository.IAppointmentRepository;
 
 import java.util.List;
 import java.util.Optional;

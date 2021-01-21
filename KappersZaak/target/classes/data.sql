@@ -10,8 +10,8 @@
   (3, 'kapper3',15),
   (4, 'kapper4',16);
 
-  INSERT INTO appointment(id, fk_account, fk_kapper) VALUES
-  (1,1,1),
-  (2,2,1),
-  (3,3,4),
-  (4,4,3)
+  INSERT INTO appointment(id,date, time, fk_account, fk_kapper) VALUES
+  (1,'12-07-2021','12:07:00',1,1),
+  (2,'12-07-2021','12:07:00',2,1),
+  (3,'12-07-2021','12:07:00',3,4),
+  (4,'12-07-2021','12:07:00',4,3)

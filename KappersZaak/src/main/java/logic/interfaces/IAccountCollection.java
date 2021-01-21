@@ -11,5 +11,9 @@ public interface IAccountCollection {
     List<Account> getAllAccounts();
     Optional<Account> getAccount(int id);
     void deleteAccount(int id);
+    Account getAccountByName(String name);
+    Account getAccountByEmail(String email);
     Account login(String username, String password);
+    boolean verify(Account account);
+    void update(Account account);
 }

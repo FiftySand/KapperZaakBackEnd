@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import logic.interfaces.IKapper;
-import testRepository.IKapperRepository;
+import repository.IKapperRepository;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,6 +56,11 @@ public class Kapper implements IKapper{
     public Kapper(int id, String name, int age)
     {
         Id = id;
+        Name = name;
+        Age = age;
+    }
+
+    public Kapper(@NotNull String name, @NotNull Integer age) {
         Name = name;
         Age = age;
     }

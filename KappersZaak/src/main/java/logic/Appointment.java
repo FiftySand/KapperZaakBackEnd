@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import testRepository.IAppointmentRepository;
+import repository.IAppointmentRepository;
 
 import javax.persistence.*;
 
@@ -28,12 +28,16 @@ public class Appointment implements IAppointment {
     private int Id;
 
     @ManyToOne()
-    @JoinColumn(name = "FK_account", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_account")
     private Account Account;
 
     @ManyToOne()
-    @JoinColumn(name = "FK_kapper", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_kapper")
     private Kapper Kapper;
+
+    private String date;
+
+    private String time;
 
     @Transient
     private static IAppointmentRepository _appointmentRepository;
@@ -58,6 +62,8 @@ public class Appointment implements IAppointment {
         this.Id = appointment.getId();
         this.Kapper = appointment.getKapper();
         this.Account = appointment.getAccount();
+        this.date = appointment.getDate();
+        this.time = appointment.getTime();
     }
     public Appointment(Appointment appointment, int id)
     {
